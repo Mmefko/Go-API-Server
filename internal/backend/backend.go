@@ -20,7 +20,7 @@ type App struct {
 }
 
 func (a *App) Initialize() {
-	DB, err := sql.Open("sqlite3", "/Users/Mikhail_Vasilyeu/github/REST API/Go-REST-API-Server/product.db")
+	DB, err := sql.Open("sqlite3", "./product.db")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
