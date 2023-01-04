@@ -10,7 +10,7 @@ type order struct {
 	ID           int         `json:"id"`
 	CustomerName string      `json:"customerName"`
 	Total        int         `json:"total"`
-	Status       int         `json:"status"`
+	Status       string      `json:"status"`
 	Items        []orderItem `json:"items"`
 }
 
@@ -79,7 +79,7 @@ func (o *order) getOrderItems(db *sql.DB) error {
 func (o *order) createOrder(db *sql.DB) error {
 	res, err := db.Exec("INSERT INTO orders(customerName, total, status) VALUES(?, ?, ?)", o.CustomerName, o.Total, o.Status)
 	if err != nil {
-		return nil
+		return err
 	}
 
 	id, err := res.LastInsertId()
